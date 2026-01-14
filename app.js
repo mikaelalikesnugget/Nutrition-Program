@@ -1,7 +1,7 @@
 // NutriPal - Meal Planner & Nutrition Platform
 console.log('📍 app.js loaded successfully!');
 
-const N8N_WEBHOOK_URL = 'https://n8ngc.codeblazar.org/webhook-test/meal-planner-form';
+const N8N_WEBHOOK_URL = 'https://n8ngc.codeblazar.org/webhook/meal-planner-form';
 
 // Global error handler to catch all errors
 window.addEventListener('error', (event) => {
