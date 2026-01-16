@@ -618,6 +618,109 @@ function closeMealPlanner() {
   }
 }
 
+// ===== FEATURES & BLOG MODAL FUNCTIONS =====
+/**
+ * Open Features Modal (Why Choose NutriPal?)
+ */
+function openFeaturesModal(e) {
+  if (e) {
+    e.preventDefault();
+  }
+  const modal = document.getElementById('features-modal');
+  if (modal) {
+    modal.classList.remove('hidden-section');
+    console.log('✅ Features modal opened');
+  }
+}
+
+/**
+ * Close Features Modal
+ */
+function closeFeaturesModal() {
+  const modal = document.getElementById('features-modal');
+  if (modal) {
+    modal.classList.add('hidden-section');
+    console.log('✅ Features modal closed');
+  }
+}
+
+/**
+ * Open Blog Modal (Health & Wellness Blog)
+ */
+function openBlogModal(e) {
+  if (e) {
+    e.preventDefault();
+  }
+  const modal = document.getElementById('blog-modal');
+  if (modal) {
+    modal.classList.remove('hidden-section');
+    console.log('✅ Blog modal opened');
+  }
+}
+
+/**
+ * Close Blog Modal
+ */
+function closeBlogModal() {
+  const modal = document.getElementById('blog-modal');
+  if (modal) {
+    modal.classList.add('hidden-section');
+    console.log('✅ Blog modal closed');
+  }
+}
+
+/**
+ * Open Guides Modal (Health Guides)
+ */
+function openGuidesModal(e) {
+  if (e) {
+    e.preventDefault();
+  }
+  const modal = document.getElementById('guides-modal');
+  if (modal) {
+    modal.classList.remove('hidden-section');
+    console.log('✅ Guides modal opened');
+  }
+}
+
+/**
+ * Close Guides Modal
+ */
+function closeGuidesModal() {
+  const modal = document.getElementById('guides-modal');
+  if (modal) {
+    modal.classList.add('hidden-section');
+    console.log('✅ Guides modal closed');
+  }
+}
+
+/**
+ * Open Recipes Modal
+ */
+function openRecipesModal(e) {
+  if (e) {
+    e.preventDefault();
+  }
+  const modal = document.getElementById('recipes-modal');
+  if (modal) {
+    modal.classList.remove('hidden-section');
+    console.log('✅ Recipes modal opened');
+  }
+}
+
+/**
+ * Close Recipes Modal
+ */
+function closeRecipesModal() {
+  const modal = document.getElementById('recipes-modal');
+  if (modal) {
+    modal.classList.add('hidden-section');
+    console.log('✅ Recipes modal closed');
+  }
+}
+
+// ===== END FEATURES & BLOG MODAL FUNCTIONS =====
+
 // Event Listeners - Modal
 /**
  * Initialize DOM element event listeners after page load
@@ -711,6 +814,10 @@ function initRecipeFilters() {
       
       // Filter recipes
       recipeCards.forEach(card => {
+        // Only apply filter if not in hidden modal
+        const modal = card.closest('.modal');
+        if (modal && modal.classList.contains('hidden-section')) return;
+        
         if (filter === 'all') {
           card.style.display = 'grid';
         } else {
@@ -738,8 +845,12 @@ function initScrollAnimations() {
     });
   }, observerOptions);
 
-  // Observe feature cards, guide cards, recipe cards, and blog posts
+  // Observe feature cards, guide cards, recipe cards, and blog posts - only on main page (not in hidden modals)
   document.querySelectorAll('.feature-card, .guide-card, .recipe-card, .blog-post').forEach(el => {
+    // Skip elements inside hidden modals
+    const modal = el.closest('.modal.hidden-section');
+    if (modal) return;
+    
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';

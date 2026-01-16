@@ -28,10 +28,10 @@
 				<div class="nav-logo">🥗 NutriPal</div>
 				<ul class="nav-menu">
 					<li><a href="#home">Home</a></li>
-					<li><a href="#features">Features</a></li>
-					<li><a href="#guides">Health Guides</a></li>
-					<li><a href="#recipes">Recipes</a></li>
-					<li><a href="#blog">Blog</a></li>
+				<li><a href="#features" onclick="openFeaturesModal(event)">Features</a></li>
+				<li><a href="#guides" onclick="openGuidesModal(event)">Health Guides</a></li>
+				<li><a href="#recipes" onclick="openRecipesModal(event)">Recipes</a></li>
+				<li><a href="#blog" onclick="openBlogModal(event)">Blog</a></li>
 				</ul>
 				<button id="nav-meal-btn" class="nav-cta btn-orange" onclick="const m = document.getElementById('chat-panel'); if(m) m.classList.add('open');">✨ Create My Meal Plan</button>
 				<div class="mobile-menu-toggle" id="mobile-menu-toggle">
@@ -196,264 +196,8 @@
 			</div>
 		</section>
 
-		<!-- Features Section -->
-		<section id="features" class="features-section">
-			<div class="container">
-				<h2 class="section-title">Why Choose NutriPal?</h2>
-				<div class="features-grid">
-					<div class="feature-card">
-						<div class="feature-icon">🤖</div>
-						<h3>AI-Powered Recommendations</h3>
-						<p>Get personalized meal suggestions based on your budget, time, dietary preferences, and health goals.</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">💰</div>
-						<h3>Student-Friendly Budgets</h3>
-						<p>Eat healthy for $2-8 per meal. We help you find affordable, nutritious options without sacrificing taste.</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">⏰</div>
-						<h3>5-30 Minute Meals</h3>
-						<p>Perfect for busy schedules. Quick breakfast ideas, lunch combos, and snacks you can prep in minutes.</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">🎯</div>
-						<h3>Health Goal Tracking</h3>
-						<p>Monitor your nutrition intake, calories, macros, and wellness progress with our smart tracker.</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">📚</div>
-						<h3>Nutrition Education</h3>
-						<p>Learn why nutrients matter, how to read labels, and build lasting healthy eating habits.</p>
-					</div>
-					<div class="feature-card">
-						<div class="feature-icon">🌍</div>
-						<h3>Global Cuisine Variety</h3>
-						<p>Explore healthy recipes from around the world that fit your culture and taste preferences.</p>
-					</div>
-				</div>
-			</div>
-		</section>
 
-		<!-- Health Guides Section -->
-		<section id="guides" class="guides-section">
-			<div class="container">
-				<h2 class="section-title">Essential Health Guides for Students</h2>
-				<div class="guides-grid">
-					<article class="guide-card">
-						<div class="guide-header" style="background: linear-gradient(135deg, #39b54a, #2d8a3a);">
-							<span class="guide-icon">🧠</span>
-						</div>
-						<div class="guide-body">
-							<h3>Brain-Boosting Foods</h3>
-							<p>Maximize focus and memory during exams. Discover foods rich in omega-3s, antioxidants, and B vitamins.</p>
-							<ul class="guide-list">
-								<li>🐟 Salmon & fish (omega-3s)</li>
-								<li>🫐 Berries (antioxidants)</li>
-								<li>🥜 Nuts & seeds (vitamin E)</li>
-								<li>🥚 Eggs (choline)</li>
-							</ul>
-						</div>
-					</article>
 
-					<article class="guide-card">
-						<div class="guide-header" style="background: linear-gradient(135deg, #ffc107, #ffb74d);">
-							<span class="guide-icon">⚡</span>
-						</div>
-						<div class="guide-body">
-							<h3>Energy Without Caffeine Crashes</h3>
-							<p>Maintain steady energy levels for long study sessions with balanced meals and smart snacking.</p>
-							<ul class="guide-list">
-								<li>🍎 Whole fruits with nuts</li>
-								<li>🥛 Greek yogurt & granola</li>
-								<li>🥒 Veggie sticks & hummus</li>
-								<li>🍌 Banana with peanut butter</li>
-							</ul>
-						</div>
-					</article>
-
-					<article class="guide-card">
-						<div class="guide-header" style="background: linear-gradient(135deg, #ff6b6b, #ff5252);">
-							<span class="guide-icon">💪</span>
-						</div>
-						<div class="guide-body">
-							<h3>Fitness & Muscle Building</h3>
-							<p>Support your workout goals with adequate protein, hydration, and recovery nutrition.</p>
-							<ul class="guide-list">
-								<li>🍗 Lean proteins (chicken, tofu)</li>
-								<li>🍚 Complex carbs (brown rice)</li>
-								<li>💧 Hydration (2-3L water daily)</li>
-								<li>🥤 Post-workout recovery meals</li>
-							</ul>
-						</div>
-					</article>
-
-					<article class="guide-card">
-						<div class="guide-header" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
-							<span class="guide-icon">😴</span>
-						</div>
-						<div class="guide-body">
-							<h3>Sleep Quality & Recovery</h3>
-							<p>Improve sleep with the right foods and meal timing. Better sleep = better grades & health.</p>
-							<ul class="guide-list">
-								<li>🥛 Warm milk (magnesium)</li>
-								<li>🍂 Almonds & chamomile</li>
-								<li>🍷 Tart cherry juice</li>
-								<li>⏰ Eat 2-3 hours before bed</li>
-							</ul>
-						</div>
-					</article>
-
-					<article class="guide-card">
-						<div class="guide-header" style="background: linear-gradient(135deg, #ec4899, #db2777);">
-							<span class="guide-icon">🌸</span>
-						</div>
-						<div class="guide-body">
-							<h3>Skin & Immune Health</h3>
-							<p>Eat for glowing skin and a strong immune system to fight off colds and stress.</p>
-							<ul class="guide-list">
-								<li>🥕 Beta-carotene rich veggies</li>
-								<li>🍊 Citrus fruits (Vitamin C)</li>
-								<li>🫒 Olive oil (healthy fats)</li>
-								<li>🥬 Leafy greens (antioxidants)</li>
-							</ul>
-						</div>
-					</article>
-
-					<article class="guide-card">
-						<div class="guide-header" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
-							<span class="guide-icon">🧘</span>
-						</div>
-						<div class="guide-body">
-							<h3>Mental Health & Mood</h3>
-							<p>Combat stress and anxiety with foods that support serotonin and reduce inflammation.</p>
-							<ul class="guide-list">
-								<li>🍫 Dark chocolate (mood booster)</li>
-								<li>🌮 Whole grains (serotonin)</li>
-								<li>🥒 Fermented foods (gut health)</li>
-								<li>🫐 Antioxidant-rich foods</li>
-							</ul>
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<!-- Quick Recipes Section -->
-		<section id="recipes" class="recipes-section">
-			<div class="container">
-				<h2 class="section-title">30-Minute Student Recipes</h2>
-				<div class="recipe-filters">
-					<button class="filter-btn active" data-filter="all">All</button>
-					<button class="filter-btn" data-filter="breakfast">Breakfast</button>
-					<button class="filter-btn" data-filter="lunch">Lunch</button>
-					<button class="filter-btn" data-filter="snack">Snacks</button>
-					<button class="filter-btn" data-filter="budget">Budget-Friendly</button>
-				</div>
-				<div class="recipes-grid">
-					<div class="recipe-card" data-category="breakfast">
-						<div class="recipe-image">🥣</div>
-						<h4>Overnight Oats</h4>
-						<p class="recipe-time">⏱️ 5 min prep</p>
-						<p class="recipe-cost">💰 $1.50</p>
-						<p class="recipe-desc">Mix oats, milk, honey, and toppings. Refrigerate overnight. Grab & go!</p>
-						<div class="recipe-tags">
-							<span class="tag">Vegetarian</span>
-							<span class="tag">Quick</span>
-						</div>
-					</div>
-
-					<div class="recipe-card" data-category="breakfast budget">
-						<div class="recipe-image">🥚</div>
-						<h4>Veggie Egg Scramble</h4>
-						<p class="recipe-time">⏱️ 10 min</p>
-						<p class="recipe-cost">💰 $1.20</p>
-						<p class="recipe-desc">Scrambled eggs with onions, peppers, tomatoes. Protein-packed breakfast!</p>
-						<div class="recipe-tags">
-							<span class="tag">High-Protein</span>
-							<span class="tag">Budget</span>
-						</div>
-					</div>
-
-					<div class="recipe-card" data-category="lunch budget">
-						<div class="recipe-image">🍚</div>
-						<h4>Quick Chickpea Curry</h4>
-						<p class="recipe-time">⏱️ 20 min</p>
-						<p class="recipe-cost">💰 $2.50</p>
-						<p class="recipe-desc">Canned chickpeas, coconut milk, spices with rice. Affordable & delicious!</p>
-						<div class="recipe-tags">
-							<span class="tag">Vegan</span>
-							<span class="tag">Budget</span>
-						</div>
-					</div>
-
-					<div class="recipe-card" data-category="lunch">
-						<div class="recipe-image">🥗</div>
-						<h4>Power Protein Salad</h4>
-						<p class="recipe-time">⏱️ 15 min</p>
-						<p class="recipe-cost">💰 $4.00</p>
-						<p class="recipe-desc">Quinoa, chickpeas, veggies, tahini dressing. Complete meal in a bowl!</p>
-						<div class="recipe-tags">
-							<span class="tag">Complete Meal</span>
-							<span class="tag">Vegetarian</span>
-						</div>
-					</div>
-
-					<div class="recipe-card" data-category="snack">
-						<div class="recipe-image">🫘</div>
-						<h4>Crispy Roasted Chickpeas</h4>
-						<p class="recipe-time">⏱️ 30 min</p>
-						<p class="recipe-cost">💰 $0.80</p>
-						<p class="recipe-desc">Canned chickpeas, seasonings, oven-roasted. Crunchy snack for studying!</p>
-						<div class="recipe-tags">
-							<span class="tag">Snack</span>
-							<span class="tag">Vegan</span>
-						</div>
-					</div>
-
-					<div class="recipe-card" data-category="snack budget">
-						<div class="recipe-image">🍎</div>
-						<h4>Apple & Almond Plate</h4>
-						<p class="recipe-time">⏱️ 2 min</p>
-						<p class="recipe-cost">💰 $1.00</p>
-						<p class="recipe-desc">Apple slices, almonds, dark chocolate chips. Perfect study snack combo!</p>
-						<div class="recipe-tags">
-							<span class="tag">No-Cook</span>
-							<span class="tag">Budget</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Blog/Tips Section -->
-		<section id="blog" class="blog-section">
-			<div class="container">
-				<h2 class="section-title">Health & Wellness Blog</h2>
-				<div class="blog-grid">
-					<article class="blog-post">
-						<div class="blog-image" style="background: linear-gradient(135deg, #39b54a, #2d8a3a);">📖</div>
-						<h3>7 Nutrition Myths Debunked</h3>
-						<p class="blog-excerpt">Stop believing myths about carbs, fats, and calories. Learn what science actually says about healthy eating...</p>
-						<a href="#" class="read-more">Read Article →</a>
-					</article>
-
-					<article class="blog-post">
-						<div class="blog-image" style="background: linear-gradient(135deg, #ffc107, #ffb74d);">💡</div>
-						<h3>Meal Prep Like a Pro</h3>
-						<p class="blog-excerpt">Master batch cooking to save time and money. Prep 5 days of healthy meals in 2 hours...</p>
-						<a href="#" class="read-more">Read Article →</a>
-					</article>
-
-					<article class="blog-post">
-						<div class="blog-image" style="background: linear-gradient(135deg, #ff6b6b, #ff5252);">🧬</div>
-						<h3>Nutrition for Mental Health</h3>
-						<p class="blog-excerpt">Your diet directly impacts anxiety, depression, and stress. Here's how to eat for mental wellness...</p>
-						<a href="#" class="read-more">Read Article →</a>
-					</article>
-				</div>
-			</div>
-		</section>
 
 		<!-- Newsletter Section -->
 		<section class="newsletter-section">
@@ -566,7 +310,7 @@
 					<button id="close-chat" class="close-btn" aria-label="Close modal" onclick="const m = document.getElementById('chat-panel'); if(m) m.classList.remove('open');">✕</button>
 				</div>
 				
-				<form id="input-form" class="meal-planner-form" onsubmit="submitMealPlannerForm(); return false;">
+				<form id="input-form" class="meal-planner-form">
 					<div class="form-group">
 						<label for="planner-name">Full Name</label>
 						<input 
@@ -619,6 +363,281 @@
 			</div>
 		</div>
 
+
+		<!-- Features Modal (Why Choose NutriPal?) -->
+		<div id="features-modal" class="modal hidden-section">
+			<div class="modal-overlay" onclick="closeFeaturesModal()"></div>
+			<div class="modal-content">
+				<button class="modal-close" onclick="closeFeaturesModal()">✕</button>
+				<div class="modal-body">
+					<h2 class="section-title">Why Choose NutriPal?</h2>
+					<div class="features-grid">
+						<div class="feature-card">
+							<div class="feature-icon">🤖</div>
+							<h3>AI-Powered Recommendations</h3>
+							<p>Get personalized meal suggestions based on your budget, time, dietary preferences, and health goals.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-icon">💰</div>
+							<h3>Student-Friendly Budgets</h3>
+							<p>Eat healthy for $2-8 per meal. We help you find affordable, nutritious options without sacrificing taste.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-icon">⏰</div>
+							<h3>5-30 Minute Meals</h3>
+							<p>Perfect for busy schedules. Quick breakfast ideas, lunch combos, and snacks you can prep in minutes.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-icon">🎯</div>
+							<h3>Health Goal Tracking</h3>
+							<p>Monitor your nutrition intake, calories, macros, and wellness progress with our smart tracker.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-icon">📚</div>
+							<h3>Nutrition Education</h3>
+							<p>Learn why nutrients matter, how to read labels, and build lasting healthy eating habits.</p>
+						</div>
+						<div class="feature-card">
+							<div class="feature-icon">🌍</div>
+							<h3>Global Cuisine Variety</h3>
+							<p>Explore healthy recipes from around the world that fit your culture and taste preferences.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Blog Modal (Health & Wellness Blog) -->
+		<div id="blog-modal" class="modal hidden-section">
+			<div class="modal-overlay" onclick="closeBlogModal()"></div>
+			<div class="modal-content">
+				<button class="modal-close" onclick="closeBlogModal()">✕</button>
+				<div class="modal-body">
+					<h2 class="section-title">Health & Wellness Blog</h2>
+					<div class="blog-grid">
+						<article class="blog-post">
+							<div class="blog-image" style="background: linear-gradient(135deg, #39b54a, #2d8a3a);">📖</div>
+							<h3>7 Nutrition Myths Debunked</h3>
+							<p class="blog-excerpt">Stop believing myths about carbs, fats, and calories. Learn what science actually says about healthy eating...</p>
+							<a href="#" class="read-more">Read Article →</a>
+						</article>
+
+						<article class="blog-post">
+							<div class="blog-image" style="background: linear-gradient(135deg, #ffc107, #ffb74d);">💡</div>
+							<h3>Meal Prep Like a Pro</h3>
+							<p class="blog-excerpt">Master batch cooking to save time and money. Prep 5 days of healthy meals in 2 hours...</p>
+							<a href="#" class="read-more">Read Article →</a>
+						</article>
+
+						<article class="blog-post">
+							<div class="blog-image" style="background: linear-gradient(135deg, #ff6b6b, #ff5252);">🧬</div>
+							<h3>Nutrition for Mental Health</h3>
+							<p class="blog-excerpt">Your diet directly impacts anxiety, depression, and stress. Here's how to eat for mental wellness...</p>
+							<a href="#" class="read-more">Read Article →</a>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Health Guides Modal -->
+		<div id="guides-modal" class="modal hidden-section">
+			<div class="modal-overlay" onclick="closeGuidesModal()"></div>
+			<div class="modal-content">
+				<button class="modal-close" onclick="closeGuidesModal()">✕</button>
+				<div class="modal-body">
+					<h2 class="section-title">Essential Health Guides for Students</h2>
+					<div class="guides-grid">
+						<article class="guide-card">
+							<div class="guide-header" style="background: linear-gradient(135deg, #39b54a, #2d8a3a);">
+								<span class="guide-icon">🧠</span>
+							</div>
+							<div class="guide-body">
+								<h3>Brain-Boosting Foods</h3>
+								<p>Maximize focus and memory during exams. Discover foods rich in omega-3s, antioxidants, and B vitamins.</p>
+								<ul class="guide-list">
+									<li>🐟 Salmon & fish (omega-3s)</li>
+									<li>🫐 Berries (antioxidants)</li>
+									<li>🥜 Nuts & seeds (vitamin E)</li>
+									<li>🥚 Eggs (choline)</li>
+								</ul>
+							</div>
+						</article>
+
+						<article class="guide-card">
+							<div class="guide-header" style="background: linear-gradient(135deg, #ffc107, #ffb74d);">
+								<span class="guide-icon">⚡</span>
+							</div>
+							<div class="guide-body">
+								<h3>Energy Without Caffeine Crashes</h3>
+								<p>Maintain steady energy levels for long study sessions with balanced meals and smart snacking.</p>
+								<ul class="guide-list">
+									<li>🍎 Whole fruits with nuts</li>
+									<li>🥛 Greek yogurt & granola</li>
+									<li>🥒 Veggie sticks & hummus</li>
+									<li>🍌 Banana with peanut butter</li>
+								</ul>
+							</div>
+						</article>
+
+						<article class="guide-card">
+							<div class="guide-header" style="background: linear-gradient(135deg, #ff6b6b, #ff5252);">
+								<span class="guide-icon">💪</span>
+							</div>
+							<div class="guide-body">
+								<h3>Fitness & Muscle Building</h3>
+								<p>Support your workout goals with adequate protein, hydration, and recovery nutrition.</p>
+								<ul class="guide-list">
+									<li>🍗 Lean proteins (chicken, tofu)</li>
+									<li>🍚 Complex carbs (brown rice)</li>
+									<li>💧 Hydration (2-3L water daily)</li>
+									<li>🥤 Post-workout recovery meals</li>
+								</ul>
+							</div>
+						</article>
+
+						<article class="guide-card">
+							<div class="guide-header" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+								<span class="guide-icon">😴</span>
+							</div>
+							<div class="guide-body">
+								<h3>Sleep Quality & Recovery</h3>
+								<p>Improve sleep with the right foods and meal timing. Better sleep = better grades & health.</p>
+								<ul class="guide-list">
+									<li>🥛 Warm milk (magnesium)</li>
+									<li>🍂 Almonds & chamomile</li>
+									<li>🍷 Tart cherry juice</li>
+									<li>⏰ Eat 2-3 hours before bed</li>
+								</ul>
+							</div>
+						</article>
+
+						<article class="guide-card">
+							<div class="guide-header" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+								<span class="guide-icon">🌸</span>
+							</div>
+							<div class="guide-body">
+								<h3>Skin & Immune Health</h3>
+								<p>Eat for glowing skin and a strong immune system to fight off colds and stress.</p>
+								<ul class="guide-list">
+									<li>🥕 Beta-carotene rich veggies</li>
+									<li>🍊 Citrus fruits (Vitamin C)</li>
+									<li>🫒 Olive oil (healthy fats)</li>
+									<li>🥬 Leafy greens (antioxidants)</li>
+								</ul>
+							</div>
+						</article>
+
+						<article class="guide-card">
+							<div class="guide-header" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
+								<span class="guide-icon">🧘</span>
+							</div>
+							<div class="guide-body">
+								<h3>Mental Health & Mood</h3>
+								<p>Combat stress and anxiety with foods that support serotonin and reduce inflammation.</p>
+								<ul class="guide-list">
+									<li>🍫 Dark chocolate (mood booster)</li>
+									<li>🌮 Whole grains (serotonin)</li>
+									<li>🥒 Fermented foods (gut health)</li>
+									<li>🫐 Antioxidant-rich foods</li>
+								</ul>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Recipes Modal -->
+		<div id="recipes-modal" class="modal hidden-section">
+			<div class="modal-overlay" onclick="closeRecipesModal()"></div>
+			<div class="modal-content">
+				<button class="modal-close" onclick="closeRecipesModal()">✕</button>
+				<div class="modal-body">
+					<h2 class="section-title">30-Minute Student Recipes</h2>
+					<div class="recipe-filters">
+						<button class="filter-btn active" data-filter="all">All</button>
+						<button class="filter-btn" data-filter="breakfast">Breakfast</button>
+						<button class="filter-btn" data-filter="lunch">Lunch</button>
+						<button class="filter-btn" data-filter="snack">Snacks</button>
+						<button class="filter-btn" data-filter="budget">Budget-Friendly</button>
+					</div>
+					<div class="recipes-grid">
+						<div class="recipe-card" data-category="breakfast">
+							<div class="recipe-image">🥣</div>
+							<h4>Overnight Oats</h4>
+							<p class="recipe-time">⏱️ 5 min prep</p>
+							<p class="recipe-cost">💰 $1.50</p>
+							<p class="recipe-desc">Mix oats, milk, honey, and toppings. Refrigerate overnight. Grab & go!</p>
+							<div class="recipe-tags">
+								<span class="tag">Vegetarian</span>
+								<span class="tag">Quick</span>
+							</div>
+						</div>
+
+						<div class="recipe-card" data-category="breakfast budget">
+							<div class="recipe-image">🥚</div>
+							<h4>Veggie Egg Scramble</h4>
+							<p class="recipe-time">⏱️ 10 min</p>
+							<p class="recipe-cost">💰 $1.20</p>
+							<p class="recipe-desc">Scrambled eggs with onions, peppers, tomatoes. Protein-packed breakfast!</p>
+							<div class="recipe-tags">
+								<span class="tag">High-Protein</span>
+								<span class="tag">Budget</span>
+							</div>
+						</div>
+
+						<div class="recipe-card" data-category="lunch budget">
+							<div class="recipe-image">🍚</div>
+							<h4>Quick Chickpea Curry</h4>
+							<p class="recipe-time">⏱️ 20 min</p>
+							<p class="recipe-cost">💰 $2.50</p>
+							<p class="recipe-desc">Canned chickpeas, coconut milk, spices with rice. Affordable & delicious!</p>
+							<div class="recipe-tags">
+								<span class="tag">Vegan</span>
+								<span class="tag">Budget</span>
+							</div>
+						</div>
+
+						<div class="recipe-card" data-category="lunch">
+							<div class="recipe-image">🥗</div>
+							<h4>Power Protein Salad</h4>
+							<p class="recipe-time">⏱️ 15 min</p>
+							<p class="recipe-cost">💰 $4.00</p>
+							<p class="recipe-desc">Quinoa, chickpeas, veggies, tahini dressing. Complete meal in a bowl!</p>
+							<div class="recipe-tags">
+								<span class="tag">Complete Meal</span>
+								<span class="tag">Vegetarian</span>
+							</div>
+						</div>
+
+						<div class="recipe-card" data-category="snack">
+							<div class="recipe-image">🫘</div>
+							<h4>Crispy Roasted Chickpeas</h4>
+							<p class="recipe-time">⏱️ 30 min</p>
+							<p class="recipe-cost">💰 $0.80</p>
+							<p class="recipe-desc">Canned chickpeas, seasonings, oven-roasted. Crunchy snack for studying!</p>
+							<div class="recipe-tags">
+								<span class="tag">Snack</span>
+								<span class="tag">Vegan</span>
+							</div>
+						</div>
+
+						<div class="recipe-card" data-category="snack budget">
+							<div class="recipe-image">🍎</div>
+							<h4>Apple & Almond Plate</h4>
+							<p class="recipe-time">⏱️ 2 min</p>
+							<p class="recipe-cost">💰 $1.00</p>
+							<p class="recipe-desc">Apple slices, almonds, dark chocolate chips. Perfect study snack combo!</p>
+							<div class="recipe-tags">
+								<span class="tag">No-Cook</span>
+								<span class="tag">Budget</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- Botpress Configuration -->
 		<script>
