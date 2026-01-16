@@ -1719,3 +1719,322 @@ function submitMealPlannerForm() {
     return false;
   }
 }
+
+// ===== INTERACTIVE CHATBOT SECTION =====
+/**
+ * Scrollable Chatbot Section
+ * Detects when user scrolls to the chatbot section and initiates conversation
+ */
+
+const scrollableChatbot = {
+  isInitialized: false,
+  currentStep: 0,
+  userResponses: {},
+  hasStarted: false,
+
+  conversations: {
+    step0: {
+      bot: "👋 Hi! I'm NutriBot, your nutrition assistant! Have you eaten anything today?",
+      quickResponses: ['Yes! 😋', 'Not yet', 'Just a snack'],
+      nextSteps: {
+        'Yes! 😋': 1,
+        'Not yet': 1,
+        'Just a snack': 1
+      }
+    },
+    step1: {
+      bot: "That's great! 🎉 What time did you have your last meal?",
+      quickResponses: ['Less than 2 hours ago', '2-4 hours ago', '4+ hours ago'],
+      nextSteps: {
+        'Less than 2 hours ago': 2,
+        '2-4 hours ago': 2,
+        '4+ hours ago': 2
+      }
+    },
+    step2: {
+      bot: "Nice! 🥗 Was it a balanced meal with vegetables, protein, and whole grains?",
+      quickResponses: ['Yes, very healthy!', 'Somewhat healthy', 'Not really 😅'],
+      nextSteps: {
+        'Yes, very healthy!': 3,
+        'Somewhat healthy': 3,
+        'Not really 😅': 3
+      }
+    },
+    step3: {
+      bot: "How much water have you drunk today? 💧",
+      quickResponses: ['1-2 glasses', '3-4 glasses', '5+ glasses', 'Not much'],
+      nextSteps: {
+        '1-2 glasses': 4,
+        '3-4 glasses': 4,
+        '5+ glasses': 4,
+        'Not much': 4
+      }
+    },
+    step4: {
+      bot: "Amazing! You're doing great! 🌟 Want some personalized nutrition tips?",
+      quickResponses: ['Yes, please!', 'Maybe later', 'No thanks'],
+      nextSteps: {
+        'Yes, please!': 5,
+        'Maybe later': 6,
+        'No thanks': 6
+      }
+    },
+    step5: {
+      bot: "💡 Here are my tips for you:\n\n✅ Eat balanced meals every 3-4 hours\n🥗 Include colorful vegetables in each meal\n💧 Aim for 8-10 glasses of water daily\n🏃 Pair meals with light activity\n\nYou've got this! 💪",
+      quickResponses: ['Thank you!', 'Create a meal plan', 'Close'],
+      nextSteps: {
+        'Thank you!': 6,
+        'Create a meal plan': 6,
+        'Close': 6
+      }
+    },
+    step6: {
+      bot: "Great chatting with you! 😊 Check back anytime for more wellness tips. Keep up the great work! 🚀",
+      quickResponses: [],
+      nextSteps: {}
+    }
+  },
+
+  // Detect when chatbot section enters viewport
+  observeSection: function() {
+    const chatbotSection = document.getElementById('chatbot-section');
+    if (!chatbotSection) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.hasStarted) {
+          this.hasStarted = true;
+          console.log('🤖 Chatbot section detected! Starting conversation...');
+          this.startConversation();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(chatbotSection);
+  },
+
+  // Start the conversation
+  startConversation: function() {
+    this.isInitialized = true;
+    this.currentStep = 0;
+    this.userResponses = {};
+    this.displayMessage('bot', this.conversations.step0.bot);
+    this.showQuickResponses(this.conversations.step0.quickResponses);
+  },
+
+  // Display a message in the chat
+  displayMessage: function(sender, text) {
+    const messagesContainer = document.getElementById('chatbot-messages');
+    if (!messagesContainer) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = `chat-message-wrapper ${sender}`;
+
+    const message = document.createElement('div');
+    message.className = 'chat-message';
+    message.textContent = text;
+
+    wrapper.appendChild(message);
+    messagesContainer.appendChild(wrapper);
+
+    // Auto-scroll to bottom
+    setTimeout(() => {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 100);
+  },
+
+  // Show quick response buttons
+  showQuickResponses: function(responses) {
+    const container = document.getElementById('quick-responses');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    responses.forEach(response => {
+      const btn = document.createElement('button');
+      btn.className = 'quick-response-btn';
+      btn.textContent = response;
+      btn.onclick = () => {
+        this.handleUserResponse(response);
+      };
+      container.appendChild(btn);
+    });
+  },
+
+  // Handle user response
+  handleUserResponse: function(response) {
+    this.displayMessage('user', response);
+
+    const currentConversation = this.conversations[`step${this.currentStep}`];
+    if (!currentConversation) return;
+
+    this.userResponses[this.currentStep] = response;
+    const nextStep = currentConversation.nextSteps[response];
+
+    // Clear input and quick responses
+    const input = document.getElementById('chatbot-input');
+    if (input) input.value = '';
+
+    // Small delay before showing next message
+    setTimeout(() => {
+      if (nextStep !== undefined && this.conversations[`step${nextStep}`]) {
+        this.currentStep = nextStep;
+        const nextConversation = this.conversations[`step${nextStep}`];
+        this.displayMessage('bot', nextConversation.bot);
+        
+        if (nextConversation.quickResponses.length > 0) {
+          this.showQuickResponses(nextConversation.quickResponses);
+        } else {
+          // Clear quick responses if none available
+          const container = document.getElementById('quick-responses');
+          if (container) container.innerHTML = '';
+        }
+      }
+    }, 400);
+
+    // Save check-in
+    this.saveCheckIn();
+  },
+
+  // Save check-in to localStorage
+  saveCheckIn: function() {
+    const checkIn = {
+      date: new Date().toLocaleDateString(),
+      timestamp: new Date().getTime(),
+      responses: this.userResponses
+    };
+
+    let checkIns = JSON.parse(localStorage.getItem('nutripal_scroll_checkins') || '[]');
+    checkIns.push(checkIn);
+    localStorage.setItem('nutripal_scroll_checkins', JSON.stringify(checkIns));
+  }
+};
+
+// Handle manual chatbot input
+function submitChatbotMessage() {
+  const input = document.getElementById('chatbot-input');
+  if (!input || !input.value.trim()) return;
+
+  const message = input.value.trim();
+  scrollableChatbot.displayMessage('user', message);
+  input.value = '';
+
+  // Move to next step
+  const currentConversation = scrollableChatbot.conversations[`step${scrollableChatbot.currentStep}`];
+  if (currentConversation && scrollableChatbot.currentStep < 6) {
+    scrollableChatbot.currentStep++;
+    const nextConversation = scrollableChatbot.conversations[`step${scrollableChatbot.currentStep}`];
+    
+    setTimeout(() => {
+      scrollableChatbot.displayMessage('bot', nextConversation.bot);
+      if (nextConversation.quickResponses.length > 0) {
+        scrollableChatbot.showQuickResponses(nextConversation.quickResponses);
+      } else {
+        const container = document.getElementById('quick-responses');
+        if (container) container.innerHTML = '';
+      }
+    }, 400);
+
+    scrollableChatbot.saveCheckIn();
+  }
+}
+
+// Handle Enter key in chatbot input
+function handleChatbotInputKey(event) {
+  if (event.key === 'Enter') {
+    submitChatbotMessage();
+  }
+}
+
+// Initialize chatbot when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  scrollableChatbot.observeSection();
+  initFeedbackForm();
+});
+
+// ===== FEEDBACK FORM =====
+function initFeedbackForm() {
+  const feedbackForm = document.getElementById('feedback-form');
+  if (!feedbackForm) return;
+
+  feedbackForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const rating = document.querySelector('input[name="rating"]:checked')?.value || 'not-rated';
+    const type = document.getElementById('feedback-type').value;
+    const message = document.getElementById('feedback-message').value;
+    const email = document.getElementById('feedback-email').value;
+
+    // Store feedback
+    const feedback = {
+      timestamp: new Date().getTime(),
+      date: new Date().toLocaleDateString(),
+      rating: rating,
+      type: type,
+      message: message,
+      email: email
+    };
+
+    let feedbacks = JSON.parse(localStorage.getItem('nutripal_feedbacks') || '[]');
+    feedbacks.push(feedback);
+    localStorage.setItem('nutripal_feedbacks', JSON.stringify(feedbacks));
+
+    // Show success message
+    const btn = feedbackForm.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = '✅ Thank you for your feedback!';
+    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+    // Reset form
+    setTimeout(() => {
+      feedbackForm.reset();
+      btn.textContent = originalText;
+      btn.style.background = '';
+    }, 2500);
+
+    console.log('📝 Feedback saved:', feedback);
+  });
+}
+
+// Modal click-outside-to-close handlers
+document.addEventListener('DOMContentLoaded', function() {
+  // Features Modal
+  const featuresModal = document.getElementById('features-modal');
+  if (featuresModal) {
+    featuresModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeFeaturesModal();
+      }
+    });
+  }
+
+  // Blog Modal
+  const blogModal = document.getElementById('blog-modal');
+  if (blogModal) {
+    blogModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeBlogModal();
+      }
+    });
+  }
+
+  // Guides Modal
+  const guidesModal = document.getElementById('guides-modal');
+  if (guidesModal) {
+    guidesModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeGuidesModal();
+      }
+    });
+  }
+
+  // Recipes Modal
+  const recipesModal = document.getElementById('recipes-modal');
+  if (recipesModal) {
+    recipesModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeRecipesModal();
+      }
+    });
+  }
+});

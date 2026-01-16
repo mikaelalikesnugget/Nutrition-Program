@@ -197,30 +197,6 @@
 			</div>
 		</section>
 
-
-
-
-		<!-- Newsletter Section -->
-		<section class="newsletter-section">
-			<div class="container">
-				<div class="newsletter-content">
-					<h2>💌 Get Weekly Nutrition Tips & Recipes</h2>
-					<p>Subscribe to receive personalized meal plans, wellness tips, student-friendly recipes, and exclusive health hacks delivered directly to your inbox.</p>
-					<form id="email-form" class="email-signup">
-						<input 
-							id="email-input"
-							type="email" 
-							placeholder="Enter your email..." 
-							required
-							autocomplete="email"
-						/>
-						<button type="submit" class="btn btn-primary">📧 Subscribe Now</button>
-					</form>
-					<small>We respect your privacy. Unsubscribe anytime. No spam ever.</small>
-				</div>
-			</div>
-		</section>
-
 		<!-- Community Wellness Sharing Section -->
 		<section id="community" class="community-section">
 			<div class="container">
@@ -253,6 +229,70 @@
 					<div class="empty-feed">
 						<p>No posts yet. Be the first to share your wellness journey! 🌟</p>
 					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Interactive Chatbot Section -->
+		<section id="chatbot-section" class="chatbot-section">
+			<div class="chatbot-container">
+				<!-- Left Side - Greeting -->
+				<div class="chatbot-intro">
+					<div class="intro-content">
+						<h2>Let's Check In! 👋</h2>
+						<p class="intro-subtitle">Quick health check-in to help you stay on track</p>
+						<div class="intro-emoji">🤖</div>
+					</div>
+				</div>
+
+				<!-- Right Side - Chat Interface -->
+				<div class="chatbot-interface">
+					<div class="chat-header">
+						<span class="chat-title">NutriBot Assistant</span>
+						<span class="chat-status">Online</span>
+					</div>
+
+					<div id="chatbot-messages" class="chatbot-messages">
+						<!-- Messages will be inserted here -->
+					</div>
+
+					<div class="chat-input-section">
+						<div class="quick-responses-container" id="quick-responses">
+							<!-- Quick response buttons will be inserted here -->
+						</div>
+						
+						<div class="chat-input-group">
+							<input 
+								type="text" 
+								id="chatbot-input" 
+								class="chatbot-input" 
+								placeholder="Type your response here..."
+								onkeypress="handleChatbotInputKey(event)"
+							/>
+							<button class="chat-submit-btn" onclick="submitChatbotMessage()">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Newsletter Section -->
+		<section class="newsletter-section">
+			<div class="container">
+				<div class="newsletter-content">
+					<h2>🥗 We would love what you think about us</h2>
+					<p>Your feedback helps us improve NutriPal and serve you better. Share your thoughts, suggestions, and experiences with our platform to help us create the best nutrition companion for students.</p>
+					<form id="email-form" class="email-signup">
+						<input 
+							id="email-input"
+							type="email" 
+							placeholder="Enter your email..." 
+							required
+							autocomplete="email"
+						/>
+						<button type="submit" class="btn btn-primary">📧 Subscribe Now</button>
+					</form>
+					<small>We respect your privacy. Unsubscribe anytime. No spam ever.</small>
 				</div>
 			</div>
 		</section>
@@ -677,3 +717,4 @@
 		<script src="app.js"></script>
 	</body>
 </html>
+
